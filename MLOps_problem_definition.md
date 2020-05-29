@@ -74,11 +74,11 @@ This level up actually does create a new hierarchy level for tracking and manage
 
 It's going to be useful to be clear about the terms that we are using, and it will also help the overviews we are going to create later to get a sense of hierarchies between entities. 
 
-* Organization. Speaks for itself. Highest entity for these purposes, so it's also the highest possible generalization and organization level.
+* Organization. Speaks for itself. Highest entity for these purposes, so it's also the highest possible generalization level.
 * Project. Your organization has many Projects.
 * Repository. The code of your pipeline. For simplicity I assume 1 project has 1 respository at this point. 
   + 1 Repository has many Versions and Branches. In the rest of the hierarchy below, the Version comes back as part of the configurations.
-* Subproject. When you use the same code but with a different configuration in order to apply your code to a separate but realted problem. Naming this thing is difficult, 'application', 'version', 'experiment', 'variation' are all very ambiguous words, and although 'subproject' is still vague and a bit unwieldy I couldn't think of anything better. Different Subprojects have different business goals, and the results between subprojects cannot be compared. 
+* Subproject. When you use the same code but with a different configuration in order to apply your code to a separate but related problem. Naming this thing is difficult, 'application', 'version', 'experiment', 'variation' are all very ambiguous words, and although 'subproject' is still vague and a bit unwieldy I couldn't think of anything better. Different Subprojects have different business goals, and the results between subprojects cannot be compared. 
   + 1 Subproject has 1 subproject configuration. This config file is the thing that enables you to easily create multiple subprojects from your repo, it defines the difference between the subprojects. Target feature is an obvious example that goes into this config.
 * Run Configuration. _Conceptually_, anything that can affect your outcome, except if it's fundamental enough that it goes in the subproject config instead, and excluding the random seed. 1 Subproject will have many, many Run Configurations.
   + 1 data version. You should have a data versioning system, so that you can always exactly reproduce the data for a run.
@@ -101,7 +101,7 @@ It's going to be useful to be clear about the terms that we are using, and it wi
 * Hyper-parameter Optimization (HPO) Run. A collection of Runs orchestrated by an optimization algorithm that aims to arrive at the optimal Hyper-parameter configuration as efficiently as possible, by covering the Hyper-parameter Space according to some search strategy. 
   + 1 HPO Run requires a configuration file describing the parts of Hyper-parameter Space that are deemed relevant, and the sampling or search strategy per parameters and as a whole. Multiple HPO runs with different HPO configurations can (and will) be part of a Subproject, but all of them will be part of the same HP Results set.
 * Stage. 1 Subproject will have 1 or more Stages. Stages are ordered and represent degrees of testing and live serving environments. There will always be at least the Production Stage, which is usually the last Stage. 'Testing' or 'Staging' Stages are common for testing or checking deployments. There may be an Archive Stage were some superseded models are still being served for ease of monitoring/mind.
-* Retrainer Deployment. Orchestrates and kicks off automatic periodic retrainings of a model. 1 Stage has 1 Retrainer Deployment. (All Retrainer Deployments within the Organization are managed by the Retrainer Service?)
+* Retrainer Deployment. Orchestrates and kicks off automatic periodic retrainings of a model. 1 Stage has 1 Retrainer Deployment.
   + 1 Retraining Schedule at any 1 time. When to retrain the model
   + 1 Production Run Configuration File at any 1 time. The Run Configuration that was picked to be the 'best', but excluding:
     - data version (because the whole point of retraining is that this will change)
