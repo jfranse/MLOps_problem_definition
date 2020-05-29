@@ -145,7 +145,7 @@ What I'm not trying to do:
 * show the tracking of runs, models and data in too much detail (this was also in my previous post)
 * show stages of deployed models (meaning that in reality you would have multiple simultaneous versions in the retrainer and server environments. This enables controlled releases and advanced deployment strategies. )
 
-[environment schema]
+![Environment contents schema](images/environment_contents.jpg)
 
 I hope the schema is somewhat intuitive, but here is some explanation. Of course, this is a bit of a simplified example. I've separate the rows into the different environments/services; dev, HPO, Retrainer, Serving and Monitoring. The columns indicate an example of time going forward. The colors indicate all objects associated with a particular version of the code. So in week 3, version 3 lives in the dev environment, some feature branch (that will be abandoned later) lives in the HPO environment, and v1 lives in the retrainer/serving/monitoring service.
 
@@ -161,11 +161,12 @@ Some notes:
 
 The next schematic focuses more on the actions of the data scientist, the control flow, and the passing of information.
 
-[workflow architecture]
+![Flowchart of objects and workflow.](images/workflow_architecture.jpg)
 
 This schema has some suggestion of time flowing toward the right, but again, you will probably find yourself going back and forth at will, especially if you have many versions or subprojects.
 
 Some explanations:
+
 * the Tracker is a single service in this view (although it doesn't have to be) that tracks all runs, models, results, metrics, etc. This should be a familiar concept by new.
 * the 'project manager' is a service that organizes the hierarchy that we talked above earlier. It will help you keep an overview of all these objects. Which subprojects are part of this project, what are their subproject configurations, what are their associated schedules and deployment configs, what is the current best pipeline (run) config, etc. 
 * the run, check and model objects (the diamond symbols) are (pieces of) your pipeline that have to run in a specific environment of packages. 
