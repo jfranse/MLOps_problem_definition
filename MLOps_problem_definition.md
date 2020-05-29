@@ -6,7 +6,7 @@ categories: ["MLOps"]
 tags: ["MLOps"]
 ---
 
-MLOps has a lot of moving parts, I’m trying to make sure I’ve given them all a spot in my ideas. 
+MLOps has a lot of moving parts, I’m trying to make sure I’ve given them all a spot in my thoughts. 
 
 I’ve written one blogpost about MLOps previously, which was like an introduction to the subject I guess. Both for me and for the reader. I talked about some ideas for making the data scientist’s work more efficient, more reliable and more enjoyable.
 
@@ -34,7 +34,7 @@ I will start with this last one. It is possibly the 'easiest' thing to fix, beca
 
 ## Single Model Workflow Description
 
-First I will describe a typical workflow, in somewhat excruciating detail. None of this will be surprising, but I need it as a starting point. 
+First I will describe an idealized typical workflow, in somewhat excruciating detail. None of this will be surprising, but I need it as a starting point. 
 
 1. Let's say at this point we already have a repository with some working code that produces a working model. I also have the location of the (training) data and can access it. 
 
@@ -44,7 +44,7 @@ First I will describe a typical workflow, in somewhat excruciating detail. None 
 
 1. When I'm somewhat happy with my new changes, I want to do some hyperparameter optimization (HPO). I define my search space and search strategy (which should be tracked), and then I give my pipeline to the HPO service. I do not need to make major change to my code in order for the HPO service to pick up my pipeline. The HPO service kicks off many runs automatically and tracks them all. 
 
-1. In my dev environment, I explore the results of the HPO. At first I just need to compare parameters and metrics. I will do this often, so it will be nice to have a set of tools or libraries that I can reuse. Then, I will probably want to compare a couple of models in more detail, at the level of the resulting datasets. Also for this it would be nice to have a set of tools for this.
+1. In my dev environment, I explore the results of the HPO. At first I just need to compare parameters and metrics. I will do this often, as will other people, so it will be useful to have a set of shared tools or libraries to reuse. Then, I will probably want to compare a couple of models in more detail, at the level of the resulting datasets (again preferably using shared libraries where possible).
 
 1. As expected, occasionally I need to do some model debugging when my pipelines produce models that do not behave as I would expect. For this, I want to be able to load the entire state of the pipeline in a notebook-like interface. 
 
@@ -137,7 +137,7 @@ I've made two schematic views that tie the hierarchy and the workflow already de
 * some suggestions for which objects, environments or services can or should be managed. In other words, which actions by the data scientist should be supported at what level.
 * which information is needed where and when
 
-What I'm not trying to do:
+What I'm _not_ trying to do:
 
 * show the data flow (already covered in previous post)
 * show the tracking of runs, models and data in too much detail (this was also in my previous post)
