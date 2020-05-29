@@ -6,8 +6,6 @@ categories: ["MLOps"]
 tags: ["MLOps"]
 ---
 
-# Getting my MLOps Thoughts Straight
-
 MLOps has a lot of moving parts, I’m trying to make sure I’ve given them all a spot in my ideas. 
 
 I’ve written one blogpost about MLOps previously, which was like an introduction to the subject I guess. Both for me and for the reader. I talked about some ideas for making the data scientist’s work more efficient, more reliable and more enjoyable.
@@ -145,7 +143,7 @@ What I'm not trying to do:
 * show the tracking of runs, models and data in too much detail (this was also in my previous post)
 * show stages of deployed models (meaning that in reality you would have multiple simultaneous versions in the retrainer and server environments. This enables controlled releases and advanced deployment strategies. )
 
-![Environment contents schema](images/environment_contents.jpg)
+![](images/environment_contents.jpg)
 
 I hope the schema is somewhat intuitive, but here is some explanation. Of course, this is a bit of a simplified example. I've separate the rows into the different environments/services; dev, HPO, Retrainer, Serving and Monitoring. The columns indicate an example of time going forward. The colors indicate all objects associated with a particular version of the code. So in week 3, version 3 lives in the dev environment, some feature branch (that will be abandoned later) lives in the HPO environment, and v1 lives in the retrainer/serving/monitoring service.
 
@@ -161,7 +159,7 @@ Some notes:
 
 The next schematic focuses more on the actions of the data scientist, the control flow, and the passing of information.
 
-![Flowchart of objects and workflow.](images/workflow_architecture.jpg)
+![](images/workflow_architecture.jpg)
 
 This schema has some suggestion of time flowing toward the right, but again, you will probably find yourself going back and forth at will, especially if you have many versions or subprojects.
 
